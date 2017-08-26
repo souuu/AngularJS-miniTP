@@ -1,0 +1,40 @@
+.active {
+    color:red;
+}
+
+.horizontal-collapse {
+    height: 70px;
+}
+.navbar-collapse.in {
+    overflow-y: hidden;
+}
+
+.footer {
+    background-color: #f5f5f5;
+    padding: 15px;
+
+}
+
+.body-content {
+    min-height: 80vh;
+}
+
+.flex-aboutme-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.flex-profile-details {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius : 50%;
+    object-fit: cover;
+}

@@ -1,10 +1,11 @@
 .active {
-    color:red;
+    color: red;
 }
 
 .horizontal-collapse {
     height: 70px;
 }
+
 .navbar-collapse.in {
     overflow-y: hidden;
 }
@@ -35,6 +36,97 @@
 .profile-image {
     width: 200px;
     height: 200px;
-    border-radius : 50%;
+    border-radius: 50%;
     object-fit: cover;
+}
+
+.gallery-title {
+    font-size: 36px;
+    color: #42B32F;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 70px;
+}
+
+.gallery-title:after {
+    content: "";
+    position: absolute;
+    width: 7.5%;
+    left: 46.5%;
+    height: 45px;
+    border-bottom: 1px solid #5e5e5e;
+}
+
+.filter-button {
+    font-size: 18px;
+    border: 1px solid #42B32F;
+    border-radius: 5px;
+    text-align: center;
+    color: #42B32F;
+    margin-bottom: 30px;
+
+}
+
+.filter-button:hover {
+    font-size: 18px;
+    border: 1px solid #42B32F;
+    border-radius: 5px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #42B32F;
+
+}
+
+.btn-default:active .filter-button:active {
+    background-color: #42B32F;
+    color: white;
+}
+
+.port-image {
+    width: 100%;
+}
+
+.gallery_product {
+    margin-bottom: 30px;
+}
+
+.ng-invalid.ng-dirty {
+    border-color: #FA787E;
+}
+
+.ng-valid.ng-dirty {
+    border-color: #78FA89;
+}
+
+.img-gallery {
+    width: 365px;
+    height: 365px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.image-modal {
+    max-width: 700px;
+}
+
+.flex-horizental {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+.language-dropdown {
+    right: 0;
+    left: auto;
+    min-width: 0;
+}
+
+.flex-horizental-header {
+    display: flex;
+    flex-direction: row;
+    align-items:center;
 }

@@ -1,4 +1,5 @@
-<div class="container" ng-controller="ReviewController as ReviewCtrl">
+<div class="container" ng-controller="ReviewController as reviewCtrl">
+    <div growl></div>
     <div class="row">
         <div class="col-xs-12 text-center">
             <h2>Review</h2>
@@ -9,39 +10,33 @@
     <div class="row">
         <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
             <!--  Review Form -->
-            <form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview()">
+            <form name="reviewForm" ng-submit="reviewCtrl.addReview()" novalidate>
                 <!--  Review Form -->
                 <h4>Submit a Review</h4>
 
                 <fieldset class="form-group form-inline">
-                    <input ng-model="reviewCtrl.review.firstname" type="text" class="form-control" placeholder="Your firstname" title="firstname" />
-                    <input ng-model="reviewCtrl.review.lastname" type="text" class="form-control" placeholder="Your lastname" title="lastname" />
+                    <input name="firstname" ng-model="reviewCtrl.review.firstname" type="text" class="form-control" placeholder="Your firstname" title="firstname" required />
+                    <input name="lastname" ng-model="reviewCtrl.review.lastname" type="text" class="form-control" placeholder="Your lastname" title="lastname" required />
                 </fieldset>
                 <fieldset class="form-group">
-                    <input ng-model="reviewCtrl.review.email" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" />
+                    <input name="email" ng-model="reviewCtrl.review.email" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" required />
                 </fieldset>
                 <fieldset class="form-group">
-                    <input ng-model="reviewCtrl.review.birthdate" type="date" class="form-control" title="birthdate" />
+                    <input name="birthdate" ng-model="reviewCtrl.review.birthdate" type="date" class="form-control" title="birthdate" required />
                 </fieldset>
                 <fieldset class="form-group">
-                    <select ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
+                    <select name="stars" ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars" required>
                         <option value>Rate the Site</option>
                     </select>
                 </fieldset>
                 <fieldset class="form-group">
-                    <textarea ng-model="reviewCtrl.review.content" class="form-control" placeholder="Write a short review of the site..." title="Review"></textarea>
+                    <textarea name="content" ng-model="reviewCtrl.review.content" class="form-control" placeholder="Write a short review of the site..." title="Review" required></textarea>
                 </fieldset>
                 <fieldset class="form-group">
                     <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
                 </fieldset>
             </form>
 
-        </div>
-    </div>
-
-    <div class="row" style="margin-top: 20px;">
-        <div class="col-xs-12" ng-repeat="review in ReviewCtrl.reviews">
-            {{review.firstname}}
         </div>
     </div>
 </div>

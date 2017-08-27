@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <head>
-    <link href="assets/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/angular-growl.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://cloud.github.com/downloads/lafeber/world-flags-sprite/flags16.css" />
+    <link rel="stylesheet" type="text/css" href="http://cloud.github.com/downloads/lafeber/world-flags-sprite/flags32.css" />
 </head>
 <header>
 
@@ -20,10 +23,22 @@
             <a class="navbar-brand" ui-sref="home">Adictiz</a>
         </div>
         <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
-            <ul class="nav navbar-nav pull-right">
+            <ul class="nav navbar-nav pull-right flex-horizental-header">
                 <li><a ui-sref="aboutme">About Me</a></li>
                 <li><a ui-sref="review">Review</a></li>
                 <li><a ui-sref="gallery">Gallery</a></li>
+                <li>
+                    <div class="btn-group" uib-dropdown is-open="status.isopen">
+                        <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
+                            <flag country="fr" size="16"></flag> {{selectedItem}} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu language-dropdown" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                            <li role="menuitem"><a ng-click="changeLanguage('FR')" href=""><flag country="fr" size="16"></flag> FR</a></li>
+                            <li role="menuitem"><a ng-click="changeLanguage('EN')" href=""><flag country="us" size="16"></flag> EN</a></li>
+                        </ul>
+                    </div>
+                </li>
+
             </ul>
         </div>
     </nav>
@@ -42,11 +57,15 @@
 </div>
 
 
-<script src="assets/angular.min.js"></script>
-<script src="assets/angular-animate.min.js"></script>
-<script src="assets/angular-sanitize.min.js"></script>
-<script src="assets/ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script src="assets/js/angular.min.js"></script>
+<script src="assets/js/angular-cookies.js"></script>
+<script src="assets/js/angular-animate.min.js"></script>
+<script src="assets/js/angular-sanitize.min.js"></script>
+<script src="assets/js/ui-bootstrap-tpls-2.5.0.min.js"></script>
 <script type="text/javascript" src="app.js"></script>
-<script type="text/javascript" src="assets/angular-ui-router.js"></script>
+<script type="text/javascript" src="assets/js/angular-ui-router.js"></script>
+<script type="text/javascript" src="assets/js/angular-growl.min.js"></script>
+<script type="text/javascript" src="assets/js/angular-translate.min.js"></script>
+<script type="text/javascript" src="assets/js/ng-flags.js"></script>
 </body>
 </html>

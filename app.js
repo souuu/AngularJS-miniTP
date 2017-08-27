@@ -80,38 +80,114 @@
     app.config(['$translateProvider', function ($translateProvider) {
         $translateProvider.translations('EN', {
             'aboutme': 'About Me',
-            'name': 'Name'
+            'review':'Review',
+            'gallery':'Gallery',
+            'submitreview':'Submit a Review',
+            'firstname':'Your firstname',
+            'lastname':'Your lastname',
+            'ratesite':'Rate the site',
+            'writereview':'Write a short review of the site...',
+            'submit':"Submit Review",
+            'category':"Category",
+            'tags':'Tags',
+            'keyword' :'Type a keyword ...',
+            'cancel' :'Cancel',
+            'name': 'Name',
+            'birthdate' : 'Birthdate',
+            'nationality' : 'Nationality',
+            'tunisian' : 'Tunisian',
+            'tel' : 'Telephone',
+            'diplome' : 'Degrees & Formations',
+            'pro' : 'Professional experiences',
+            'project' : 'Public Projects',
+            'cycleing' : "Engineer's Cycle in Software Engineering",
+            'septembre' : 'September',
+            'present' : 'Present',
+            'insat': "National Institute of Applied Sciences and Technology (INSAT) Ariana, Tunisia",
+            'prepa' : 'Integrated preparatory cycle',
+            'juin' : 'June',
+            'pilote' : 'Pilote High School Sfax - Section : mathematics - Very Good',
+            'devweb' : 'Web Developer & Web Desginer - Part time',
+            'conception' : 'Platform Design - Wireframes & Web Interfaces',
+            'integration' : 'HTML / CSS integration',
+            'implementation' : 'Web Application implemenetation : Angular 2/4',
+            'stage' : 'Engineer internship / Web development',
+            'aout' : 'August',
+            'vyndmanager' : 'Design and development of the management platform for Vynd partner merchants: Vynd Manager.',
+            'juillet' :'July',
+            'vynduser': "Design and development of Vynd's community responsive web platform: Vynd User.",
+            'android': "Android application that presents the different prices of the Tunisian market, banks and nearby financial institutions and a currency converter.",
+            'elearning' : 'Design and development of a web-based e-learning platform.',
+            'unity' : 'Design and development of an Android mobile app that is a reflexion game developed with Unity 3D.',
+            'bac': 'baccalaureate',
+            'madewith':'Made With',
+            'intunis':'in Tunis'
+
+
+
+
+
         });
 
         $translateProvider.translations('FR', {
             'aboutme': 'A propos de moi',
-            'name': 'Nom & Prénom'
+            'review':'Critiquer',
+            'gallery':'Gallerie',
+            'submitreview':'Envoyer une évaluation',
+            'firstname':'Votre prénom',
+            'lastname':'Votre nom',
+            'ratesite':'Evaluer le site',
+            'writereview':'Ecrire une courte évaluation du site ...',
+            'submit':"Envoyer l'évaluation",
+            'category':"Catégorie",
+            'tags':'Mots clés',
+            'keyword' :'Ecrire un mot clé ...',
+            'cancel' :'Annuler',
+            'name': 'Nom & Prénom',
+            'birthdate' : 'Date de naissance',
+            'nationality' : 'Nationalité',
+            'tunisian' : 'Tunisienne',
+            'tel' : 'Téléphone',
+            'diplome' : 'Diplômes & Formations',
+            'pro' : 'Expériences professionelles',
+            'project' : 'Projets Publiques',
+            'cycleing' : "Cycle d’ingénieur en Génie Logiciel",
+            'septembre' : 'Septembre',
+            'present' : 'Présent',
+            'insat' : "Institut National des Sciences Appliquées et de Technologie (INSAT) Ariana,Tunisie",
+            'prepa' : 'Cycle préparatoire intégré',
+            'juin': 'Juin',
+            'pilote' : 'Lycée Pilote Sfax - Section : Mathématiques - Mention Très Bien',
+            'devweb' : 'Développeur Web & Designer Web à temps partiel',
+            'conception':'Conception des plateformes : Wireframes & Interfaces Web.',
+            'integration' : 'Intégration HTML/CSS',
+            'implementation' : 'Implémentation des applications web : Angular 2/4',
+            'stage' : 'Stage Ingénieur / Développement web',
+            'aout' : 'Aout',
+            'vyndmanager' : 'Conception et développement de la plateforme de gestion pour les commerçants partenaires de Vynd : Vynd Manager.',
+            'juillet' : 'Juillet',
+            'vynduser' : 'Conception et développement de la plateforme communautaire web responsive de Vynd : Vynd User.',
+            'android' : 'Application Android qui présente les différents cours du marché tunisien, les banques et les établissements financiers proches et un convertisseur de devise.',
+            'elearning': "Conception et développement d'une plateforme web de e-learning.",
+            'unity' : 'Conception et développement d’une application mobile Android se résumant à un jeu de réflexion développé avec Unity 3D.',
+            'bac':'Baccalauréat',
+            'madewith':'Crée avec',
+            'intunis':'à Tunis'
+
+
+
+
+
+
+
+
+
         });
 
         $translateProvider.preferredLanguage('fr');
     }]);
 
-    app.controller('ReviewController', ['$scope','growl','$cookies', function($scope,growl,$cookies){
-        $scope.showWarning = function(){
-            growl.warning('This is a warning mesage.',{title: 'Warning!'});
-        };
-        $scope.showError = function(){
-            growl.error('This is a error mesage.',{title: 'Error!'});
-        };
-        $scope.showSuccess = function(){
-            growl.success('This is a success mesage.',{title: 'Success!'});
-        };
-        $scope.showInfo = function(){
-            growl.info('This is an info mesage.',{title: 'Info!'});
-        };
-        $scope.showAll = function(){
-            growl.warning('This is warning mesage.',{title: 'Warning!'});
-            growl.error('This is error mesage.',{title: 'Error!'});
-            growl.success('This is success mesage.',{title: 'Success!'});
-            growl.info('This is an info mesage.',{title: 'Info!'});
-        };
-
-
+    app.controller('ReviewController', ['$scope','growl','$cookies','$translate', function($scope,growl,$cookies,$translate){
         this.review = {
             "firstname": "",
             "lastname": "",
@@ -128,23 +204,46 @@
 
 //add a review
         this.addReview = function() {
+            if($translate.use()=='FR') {
+                me.firstname='Veuillez mettre un prénom.';
+                me.lastname='Veuillez mettre un nom.';
+                me.email='Veuillez mettre un mail valide.';
+                me.birthdate='Veuillez mettre une date de naissance valide.';
+                me.stars="Veuillez sélectionner le nombre d'étoiles ";
+                me.content='Veuillez mettre une évaluation.';
+                me.add='Votre évaluation est ajoutée !';
+                me.success = 'Succès !';
+                me.error = 'Erreur !'
+            }
+            else {
+                me.firstname='Please put a firstname.';
+                me.lastname='Please put a lastname.';
+                me.email='Please put a valid email.';
+                me.birthdate='Please put a valid birthdate.';
+                me.stars='Please select a number of stars.';
+                me.content='Please put a review.';
+                me.add='Your review is added !';
+                me.success = 'Success !';
+                me.error = 'Error !'
+            };
+
             if(!$scope.reviewForm.firstname.$valid) {
-                growl.error('Please put a firstname.',{title: 'Error!'});
+                growl.error(me.firstname,{title: 'Error!'});
             }
             else if(!$scope.reviewForm.lastname.$valid) {
-                growl.error('Please put a lastname.',{title: 'Error!'});
+                growl.error(me.lastname,{title: 'Error!'});
             }
             else if(!$scope.reviewForm.email.$valid) {
-                growl.error('Please put a valid email.', {title: 'Error!'});
+                growl.error(me.email, {title: 'Error!'});
             }
             else if(!$scope.reviewForm.birthdate.$valid) {
-                growl.error('Please put a valid birthdate.',{title: 'Error!'});
+                growl.error(me.birthdate,{title: 'Error!'});
             }
             else if(!$scope.reviewForm.stars.$valid) {
-                growl.error('Please select a number of stars.',{title: 'Error!'});
+                growl.error(me.stars,{title: 'Error!'});
             }
             else if(!$scope.reviewForm.content.$valid) {
-                growl.error('Please put a content.',{title: 'Error!'});
+                growl.error(me.content,{title: 'Error!'});
             }
             else {
                 me.reviews.push(this.review);
@@ -152,7 +251,7 @@
                  console.log($cookies.getObject('Review'));
                  //Clear review
                  this.review = {};
-                growl.success('Your review is added !',{title: 'Success!'});
+                growl.success(this.add,{title: 'Success!'});
             }
 
         };
@@ -240,15 +339,25 @@
          };
 
          $scope.changeFilter = function () {
-             me.searchphotos = me.photos.filter(function(photo){
-                 return ((photo.name.toUpperCase().indexOf(me.filter.toUpperCase())!=-1)||(photo.category.toUpperCase().indexOf(me.filter.toUpperCase())!=-1)||me.hasTags(photo.tags));
-             });
+             if (me.category) {
+                 me.searchphotos = me.photos.filter(function(photo){
+                     return (((photo.name.toUpperCase().indexOf(me.filter.toUpperCase())!=-1)||(photo.category.toUpperCase().indexOf(me.filter.toUpperCase())!=-1)||me.hasTags(photo.tags))&&(photo.category.toUpperCase().indexOf(me.category.toUpperCase())!=-1));
+                 });
+             }
+             else {
+                 me.searchphotos = me.photos.filter(function(photo){
+                     return (((photo.name.toUpperCase().indexOf(me.filter.toUpperCase())!=-1)||(photo.category.toUpperCase().indexOf(me.filter.toUpperCase())!=-1)||me.hasTags(photo.tags))&&(photo.category.toUpperCase().indexOf(me.category.toUpperCase())!=-1));
+                 });
+             }
          };
          $scope.changeCategory = function () {
              if (me.category) {
                  me.searchphotos = me.photos.filter(function(photo){
                      return ((photo.category.toUpperCase().indexOf(me.category.toUpperCase())!=-1));
                  });
+             }
+             else {
+                 me.searchphotos=me.photos;
              }
          }
     }]);

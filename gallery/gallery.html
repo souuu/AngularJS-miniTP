@@ -6,7 +6,7 @@
         <div class="modal-body flex-vertical" id="modal-body">
             <img src="{{$ctrl.photoSelected.url}}" class="image-modal">
             <div style="margin-top: 20px;">
-                <b>Category : </b>{{$ctrl.photoSelected.category}}
+                <b>{{'category' | translate}} : </b>{{$ctrl.photoSelected.category}}
             </div>
             <div class="flex-horizental">
                 <i class="glyphicon glyphicon-tags" style="margin-right: 10px;"></i> <span ng-repeat="tag in $ctrl.photoSelected.tags">{{tag}},</span>
@@ -18,20 +18,20 @@
 
         </div>
         <div class="modal-footer">
-            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">{{'cancel' | translate}}</button>
         </div>
     </script>
     <div class="row">
         <div class="col-xs-12 text-center">
-            <h2>Gallery</h2>
+            <h2>{{'gallery' | translate}}</h2>
             <hr/>
         </div>
 
         <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
             <div class="form-group form-inline">
-                <input ng-change="changeFilter()" name="filter" type="text" ng-model="galleryCtrl.filter" class="form-control" placeholder="Type a keyword ...">
-                <select name="category" ng-change="changeCategory()" ng-model="galleryCtrl.category" class="form-control" ng-options="category for category in galleryCtrl.categories" title="Stars" required>
-                    <option value>Category</option>
+                <input ng-change="changeFilter()" name="filter" type="text" ng-model="galleryCtrl.filter" class="form-control" placeholder="{{'keyword' | translate}}">
+                <select name="category" ng-change="changeCategory()" ng-model="galleryCtrl.category" class="form-control" ng-options="category for category in galleryCtrl.categories" title="Category">
+                    <option value>{{'category' | translate}}</option>
                 </select>
             </div>
         </div>
@@ -40,8 +40,10 @@
 
 
 
-        <div ng-repeat="photo in galleryCtrl.searchphotos" class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe">
+        <div ng-repeat="photo in galleryCtrl.searchphotos" class="gallery_photo col-lg-4 col-md-4 col-sm-4 col-xs-6 flex-vertical">
             <img src="{{photo.url}}" class="img-gallery" ng-click="galleryCtrl.photoSelected=photo;galleryCtrl.open()">
+            <span style="margin-top: 10px;"><b>{{photo.name}}</b></span>
+            <span>{{photo.category}}</span>
         </div>
     </div>
 </div>

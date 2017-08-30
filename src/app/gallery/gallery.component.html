@@ -1,4 +1,4 @@
-<div class="container" ng-controller="GalleryController as galleryCtrl">
+<div class="container">
     <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
             <h3 class="modal-title" id="modal-title">{{$ctrl.photoSelected.name}}</h3>
@@ -29,8 +29,8 @@
 
         <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
             <div class="form-group form-inline">
-                <input ng-change="changeFilter()" name="filter" type="text" ng-model="galleryCtrl.filter" class="form-control" placeholder="{{'keyword' | translate}}">
-                <select name="category" ng-change="changeCategory()" ng-model="galleryCtrl.category" class="form-control" ng-options="category for category in galleryCtrl.categories" title="Category">
+                <input ng-change="changeFilter()" name="filter" type="text" ng-model="filter" class="form-control" placeholder="{{'keyword' | translate}}">
+                <select name="category" ng-change="changeCategory()" ng-model="category" class="form-control" ng-options="category for category in categories" title="Category">
                     <option value>{{'category' | translate}}</option>
                 </select>
             </div>
@@ -40,8 +40,8 @@
 
 
 
-        <div ng-repeat="photo in galleryCtrl.searchphotos" class="gallery_photo col-lg-4 col-md-4 col-sm-4 col-xs-6 flex-vertical">
-            <img src="{{photo.url}}" class="img-gallery" ng-click="galleryCtrl.photoSelected=photo;galleryCtrl.open()">
+        <div ng-repeat="photo in searchphotos" class="gallery_photo col-lg-4 col-md-4 col-sm-4 col-xs-6 flex-vertical">
+            <img src="{{photo.url}}" class="img-gallery" ng-click="open(undefined,undefined,photo)">
             <span style="margin-top: 10px;"><b>{{photo.name}}</b></span>
             <span>{{photo.category}}</span>
         </div>

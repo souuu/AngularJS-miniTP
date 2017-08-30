@@ -1,0 +1,42 @@
+<div class="container">
+    <div growl></div>
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <h2>{{ 'review' | translate }}</h2>
+            <hr/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
+            <!--  Review Form -->
+            <form name="reviewForm" ng-submit="addReview()" novalidate>
+                <!--  Review Form -->
+                <h4>{{ 'submitreview' | translate }}</h4>
+
+                <fieldset class="form-group form-inline">
+                    <input name="firstname" ng-model="review.firstname" type="text" class="form-control" placeholder="{{ 'firstname' | translate }}" title="firstname" required />
+                    <input name="lastname" ng-model="review.lastname" type="text" class="form-control" placeholder="{{ 'lastname' | translate }}" title="lastname" required />
+                </fieldset>
+                <fieldset class="form-group">
+                    <input name="email" ng-model="review.email" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" required />
+                </fieldset>
+                <fieldset class="form-group">
+                    <input name="birthdate" ng-model="review.birthdate" type="date" class="form-control" title="birthdate" required />
+                </fieldset>
+                <fieldset class="form-group">
+                    <select name="stars" ng-model="review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars" required>
+                        <option value>{{ 'ratesite' | translate }}</option>
+                    </select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <textarea name="content" ng-model="review.content" class="form-control" placeholder="{{'writereview' | translate}}" title="Review" required></textarea>
+                </fieldset>
+                <fieldset class="form-group">
+                    <input type="submit" class="btn btn-primary pull-right" value="{{'submit' | translate}}" />
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+</div>
